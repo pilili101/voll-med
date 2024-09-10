@@ -2,7 +2,7 @@ Voll Med - API REST
 Este es un proyecto de práctica que implementa una API REST para gestionar información de médicos y pacientes. Desarrollado con Java y Spring Framework.
 
 Funcionalidades:
-Crear, leer, actualizar y eliminar información de médicos y pacientes.
+Crear, leer, actualizar y eliminar información de médicos y pacientes. 
 Relacionar pacientes con médicos para consultas.
 
 Tecnologías:
