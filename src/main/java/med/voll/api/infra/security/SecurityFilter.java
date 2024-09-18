@@ -32,7 +32,9 @@ public class SecurityFilter extends OncePerRequestFilter {
         if(authHeader!=null){
             var token = authHeader.replace("Bearer ","");
             var username = tokenService.getSubject(token);
+            System.out.println("Dentro del primer if");
             if(username!=null){
+                System.out.println("Dentro del segundo if");
                 //si entra aqui entonces el token es valido
                 //buscamos un usuario por login
                 var usuario = usuariosRepository.findByLogin(username);
