@@ -9,6 +9,7 @@ public record DTORespMedico(
         String telefono,
         String documento,
         Especialidad especialidad,
-        DTODireccion direccion
+        DTODireccion direccion,
+        Boolean activo
 ) {
 }

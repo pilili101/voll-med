@@ -27,7 +27,8 @@ public class SecurityConfiguration {
         httpSecurity.csrf(csrf -> csrf.disable()) // Deshabilitar CSRF
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/login").permitAll() // Permitir acceso a /login
+                        .requestMatchers(HttpMethod.POST, "/login").permitAll()// Permitir acceso a /login
+                        .requestMatchers("/swagger-ui.html", "/v3/api-docs/**","/swagger-ui/**").permitAll() //patron regex ** indicando que queremos la pag de inicio y todas subdirecciones
                         .anyRequest().authenticated())// requiere autenticacion para cualquier otra solicitud
                 //agregamos mi filtro antes , donde se furza una sesion para poder acceder
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);

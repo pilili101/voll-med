@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.domain.consulta.cancelacion.MotivoCancelacion;
 import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.paciente.Paciente;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.time.LocalDateTime;
 
@@ -33,4 +33,20 @@ public class Consulta {
 
     private LocalDateTime fecha;
 
+    private Boolean cancelada;
+    @Column(name = "motivo_cancelacion")
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelacion motivoCancelacion;
+
+    public Consulta(Medico medico, Paciente paciente, LocalDateTime fecha){
+        this.medico=medico;
+        this.paciente=paciente;
+        this.fecha=fecha;
+        this.cancelada=false;
+    }
+
+    public void cancelar(MotivoCancelacion motivo){
+        this.cancelada=true;
+        this.motivoCancelacion = motivo;
+    }
 }

@@ -1,5 +1,6 @@
 package med.voll.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.voll.api.domain.direccion.DTODireccion;
@@ -15,6 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/medicos")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
 
     @Autowired
@@ -29,7 +31,7 @@ public class MedicoController {
         DTORespMedico dtoRespMedico = new DTORespMedico(medico.getId(),medico.getNombre(),medico.getEmail(),
                 medico.getTelefono(),medico.getDocumento(),medico.getEspecialidad(), new DTODireccion(medico.getDireccion().getCalle(),
                 medico.getDireccion().getDistrito(),medico.getDireccion().getCiudad(),medico.getDireccion().getNumero(),
-                medico.getDireccion().getComplemento()));
+                medico.getDireccion().getComplemento()),medico.getActivo());
         URI url = uriComponentsBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
         return ResponseEntity.created(url).body(dtoRespMedico);
     }
@@ -53,7 +55,7 @@ public class MedicoController {
         return ResponseEntity.ok(new DTORespMedico(medico.getId(),medico.getNombre(),medico.getEmail(),
                 medico.getTelefono(),medico.getDocumento(),medico.getEspecialidad(), new DTODireccion(medico.getDireccion().getCalle(),
                 medico.getDireccion().getDistrito(),medico.getDireccion().getCiudad(),medico.getDireccion().getNumero(),
-                medico.getDireccion().getComplemento())));
+                medico.getDireccion().getComplemento()),medico.getActivo()));
     }
 
     @DeleteMapping("/{id}")
@@ -70,7 +72,7 @@ public class MedicoController {
         DTORespMedico dtoRespMedico = new DTORespMedico(medico.getId(),medico.getNombre(),medico.getEmail(),
                 medico.getTelefono(),medico.getDocumento(),medico.getEspecialidad(), new DTODireccion(medico.getDireccion().getCalle(),
                 medico.getDireccion().getDistrito(),medico.getDireccion().getCiudad(),medico.getDireccion().getNumero(),
-                medico.getDireccion().getComplemento()));
+                medico.getDireccion().getComplemento()),medico.getActivo());
         return ResponseEntity.ok(dtoRespMedico);
     }
 
